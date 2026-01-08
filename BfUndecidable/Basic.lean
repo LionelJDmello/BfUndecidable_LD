@@ -80,6 +80,7 @@ theorem halting_undecidable : ∀ candidate, ∃ spoiler,
   ∨
   (eval_total candidate spoiler = false ∧ halts spoiler spoiler) := by
 
+
   sorry
 
 /-- The more classical formulation of the result as a negation. -/
