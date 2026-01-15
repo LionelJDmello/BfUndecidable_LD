@@ -80,6 +80,20 @@ theorem halting_undecidable : ∀ candidate, ∃ spoiler,
   ∨
   (eval_total candidate spoiler = false ∧ halts spoiler spoiler) := by
 
+  intro candidate
+  let spoiler := if_run_else_halt candidate.prog
+  use spoiler
+
+  by_cases (eval_total candidate spoiler = true)
+  ·
+
+    sorry
+  ·
+
+    sorry
+
+
+
 
   sorry
 
