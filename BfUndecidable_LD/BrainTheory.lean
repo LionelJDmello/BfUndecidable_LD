@@ -147,10 +147,13 @@ will not halt.
 -/
 theorem ireh_runs_of_true (cond : Data) (input : Data) (h : halts cond input)
     (hret : eval h = true) : ¬ halts (ireh_extend cond) input := by
-  sorry
+
 
   have hm : matchingOpen (ireh_extend cond) (cond.length) 0 (by simp) = some (cond.length) := by
+
     sorry
+
+  sorry
 
 
 /-

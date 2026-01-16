@@ -75,27 +75,13 @@ the halting problem, as it gives the wrong answer at least on `spoiler`.
 This formalization emphasizes the constructive nature of the proof. For its
 (equivalent) formulation as a negation, see below.
 -/
-theorem halting_undecidable : ∀ candidate, ∃ spoiler,
+theorem halting_undecidable : ∀ (candidate : TotalProgram), ∃ (spoiler : Data),
   (eval_total candidate spoiler = true ∧ ¬halts spoiler spoiler)
   ∨
   (eval_total candidate spoiler = false ∧ halts spoiler spoiler) := by
 
-  intro candidate
-  let spoiler := if_run_else_halt candidate.prog
-  use spoiler
-
-  by_cases (eval_total candidate spoiler = true)
-  ·
-
-    sorry
-  ·
-
-    sorry
-
-
-
-
   sorry
+
 
 /-- The more classical formulation of the result as a negation. -/
 theorem halting_undecidable_neg_formulation :
