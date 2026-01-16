@@ -120,21 +120,27 @@ theorem halting_undecidable_neg_formulation :
   intro h_halt
   obtain ⟨decider, halting_prob⟩ := h_halt
 
-  let spoiler := if_run_else_halt decider.prog
-  specialize halting_prob spoiler
+  let counter := if_run_else_halt decider.prog
+  specialize halting_prob counter
 
-  have h_func_true : eval_total decider spoiler = true →  ¬halts spoiler spoiler :=
-    ireh_runs_of_true decider.prog spoiler (decider.htotal spoiler)
+  have h_func_false : eval_total decider counter = false →  halts counter counter :=
+    ireh_halts_of_false decider.prog counter (decider.htotal counter)
 
-  have h_func_false : eval_total decider spoiler = false →  halts spoiler spoiler :=
-    ireh_halts_of_false decider.prog spoiler (decider.htotal spoiler)
+  have h_func_true : eval_total decider counter = true →  ¬halts counter counter :=
+    ireh_runs_of_true decider.prog counter (decider.htotal counter)
 
-  simp only [← Bool.not_eq_true] at h_func_false
+  rw [← halting_prob] at h_func_true h_func_false
+  simp only [← Bool.not_eq_true, _root_.not_imp_self] at h_func_false
 
+  exact h_func_true h_func_false h_func_false
 
-  sorry
+/-
 
+LD's comments:
 
+-- Again `simp? at h` is quite useful.
+
+-/
 
 
 
